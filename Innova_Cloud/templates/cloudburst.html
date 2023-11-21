@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weather Application</title>
+    <link rel="stylesheet" href="/static/css/cloud.css">
+  </head>
+  <body>
+    <h1>Cloudburst Prediction</h1>
+    <div class="container">
+        <div class="weather-input">
+            <form method="post" action="{% url 'train_model' %}">
+                {% csrf_token %}
+                <label for="Temp_C">Temp C:</label>
+                <input type="text" class="city-input" name="Temp_C" required><br>
+
+                <label for="Dew Point Temp_C">Dew_point_Temp:</label>
+                <input type="text" class="city-input" name="Dew Point Temp_C" required><br>
+
+                <label for="Rel Hum_%">Rel_humidity:</label>
+                <input type="text" class="city-input" name="Rel Hum_%" required><br>
+
+                <label for="Wind Speed_km/h">Wind_speed:</label>
+                <input type="text" class="city-input" name="Wind Speed_km/h" required><br>
+
+                <label for="Visibility_km">Visibility_km:</label>
+                <input type="text" class="city-input" name="Visibility_km" required><br>
+
+                <label for="Press_kPa">Press_kPa:</label>
+                <input type="text" class="city-input" name="Press_kPa" required><br>
+
+                <!-- <label for="Weather">Weather</label>
+                <input type="text" class="city-input" name="Weather" required><br> -->
+
+                <label for="rain">Rain_per_inch:</label>
+                <input type="text" class="city-input" name="rain" required><br>
+
+
+                <br>
+                <button class="search-btn" type="submit">Predict</button>
+            </form>
+        </div>
+
+        <div class="weather-data">
+            <div class="current-weather">
+              <div class="details">
+                {% if prediction %}
+                <h2>The chance of Cloudburst is : {{ prediction }}</h2>
+                {% endif %}
+              </div>
+            </div>
+        </div>    
+    </div>
+
+
+  </body>
